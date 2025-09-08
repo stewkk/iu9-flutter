@@ -26,14 +26,14 @@
             buildInputs = with pkgs; [
               # from pkgs
               flutter
-              jdk11
+              jdk17
               #from ./nix/*
               android.platform-tools
             ];
 
             ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
             GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${android.androidsdk}/libexec/android-sdk/build-tools/${buildToolsVersionForAapt2}/aapt2";
-            JAVA_HOME = pkgs.jdk11;
+            JAVA_HOME = pkgs.jdk17;
             ANDROID_AVD_HOME = (toString ./.) + "/.android/avd";
           };
       });
