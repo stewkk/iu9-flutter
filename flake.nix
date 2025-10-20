@@ -18,7 +18,7 @@
           config.allowUnfree = true;
           config.android_sdk.accept_license = true;
         };
-        buildToolsVersionForAapt2 = "34.0.0-rc4";
+        buildToolsVersionForAapt2 = "34.0.0-rc3";
       in {
         devShells.default =
           let android = pkgs.callPackage ./nix/android.nix { inherit buildToolsVersionForAapt2; };
@@ -27,6 +27,7 @@
               # from pkgs
               flutter
               jdk17
+              code-cursor-fhs
               #from ./nix/*
               android.platform-tools
             ];
