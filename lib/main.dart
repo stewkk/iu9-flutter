@@ -292,25 +292,12 @@ class _Lab6ScreenState extends State<Lab6Screen> {
         final dynamic jsonData = json.decode(response.body);
         final List<LocationData> locations = [];
         
-        if (jsonData is List) {
-          for (var item in jsonData) {
-            if (item is Map<String, dynamic>) {
-              locations.add(LocationData.fromJson(item));
-            }
-          }
-        } else if (jsonData is Map<String, dynamic>) {
-          if (jsonData.containsKey('locations')) {
-            final locList = jsonData['locations'] as List;
-            for (var item in locList) {
-              if (item is Map<String, dynamic>) {
-                locations.add(LocationData.fromJson(item));
-              }
-            }
-          } else {
-            locations.add(LocationData.fromJson(jsonData));
+        for (var item in jsonData) {
+          if (item is Map<String, dynamic>) {
+            locations.add(LocationData.fromJson(item));
           }
         }
-        
+
         setState(() {
           _locations = locations;
           _isLoading = false;
@@ -360,11 +347,6 @@ class _Lab6ScreenState extends State<Lab6Screen> {
         ),
         title: const Text('Lab 6 - Yandex Maps'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _fetchLocations,
-            tooltip: 'Refresh locations',
-          ),
         ],
       ),
       body: Stack(
